@@ -1,0 +1,11 @@
+{application, rabbitmq_http_proxy,
+ [
+  {description, "RabbitMQ HTTP Proxy"},
+  {vsn, "%%VSN%%"},
+  {modules, []},
+  {registered, []},
+  {mod, {rabbitmq_http_proxy, []}},
+  {env, [{contexts, [{proxy, proxy}]}]},
+  {applications, [kernel, stdlib, rabbit, rabbitmq_mochiweb, amqp_client]}
+ ]
+}.
