@@ -10,7 +10,7 @@ RabbitMQ HTTP Proxy
     % cd ./rabbitmq-http-proxy
     % make
 
-### Install
+### Installation
     % cd /path/to/rabbitmq-server
     % mkdir -p plugins
     % ln -s /path/to/rabbitmq-public-umbrella/rabbitmq-http-proxy/dist/rabbitmq_http_proxy-0.0.0.ez ./plugins/rabbitmq_http_proxy-0.0.0.ez
