@@ -19,3 +19,4 @@ RabbitMQ HTTP Proxy
 ### How to Use
     % /path/to/rabbitmq-server/scripts/rabbitmq-server -detached
     % perl /path/to/rabbitmq-public-umbrella/rabbitmq-http-proxy/sample_httpd_worker.pl
+    % wget http://localhost:55670/proxy/

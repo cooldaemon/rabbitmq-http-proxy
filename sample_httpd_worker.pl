@@ -21,10 +21,8 @@ Readonly my $PREFETCH => 5;
 
 $| = 1;
 
-my $is_finish;
 $SIG{HUP} = $SIG{INT} = $SIG{TERM} = sub {
     warn "Trapped SIGNAL.\n";
-    $is_finish = 1;
     $Coro::main->ready;
 };
 
@@ -50,16 +48,15 @@ eval {
         no_ack     => 0,
         on_consume => unblock_sub {
             work($json, $ch, shift);
-            $Coro::main->ready;
         }
     );
 };
 if ($@) {
-    warn $@;
-    $is_finish = 1;
+    $rf->close;
+    die $@;
 };
 
-schedule while !$is_finish;
+schedule;
 $rf->close;
 exit;
 
@@ -67,7 +64,6 @@ sub failure_handler {
     my ($event) = @_;
     return unblock_sub {
         warn Dumper({$event => \@_});
-        $is_finish = 1;
         $Coro::main->ready;
     };
 }
